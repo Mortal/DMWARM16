@@ -17,5 +17,4 @@ scores.append(
 for row in reversed(board):
     scores.append(
         fill([None if c == '.' else scores[-1][i] for i, c in enumerate(row)]))
-scores.reverse()
-print(sum(scores[0][i-1] for i in queries))
+print(sum(scores[-1][i-1] for i in queries))
