@@ -1,4 +1,3 @@
-from collections import Counter
 n = int(input().strip())
 counts = [0] * 720
 for _ in range(n):
