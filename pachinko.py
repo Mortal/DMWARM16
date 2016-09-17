@@ -7,15 +7,9 @@ bucket_scores = {k: int(v) for _ in range(b)
 queries = list(map(int, input().split()))
 
 def fill(values):
-    for i, v in enumerate(values):
-        if v is None:
-            if i == 0:
-                values[i] = values[i+1]
-            elif i+1 == len(values):
-                values[i] = values[i-1]
-            else:
-                values[i] = (values[i-1] + values[i+1]) / 2
-    return values
+    x = [values[1]] + values + [values[-2]]
+    return [v if v is not None else (u + w) / 2
+            for u, v, w in zip(x[:-2], x[1:-1], x[2:])]
 
 scores = []
 # Last line
