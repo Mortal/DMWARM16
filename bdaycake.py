@@ -3,7 +3,7 @@ n = int(input().strip())
 counts = [0] * 720
 for _ in range(n):
     dm = input().strip()
-    i = (int(d[2:]) - 1) * 30 + int(d[:2]) - 1
+    i = (int(dm[2:]) - 1) * 30 + int(dm[:2]) - 1
     counts[i] += 1
     counts[i+360] += 1
 bestdate = min(range(360),
