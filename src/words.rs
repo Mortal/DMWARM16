@@ -19,6 +19,8 @@ impl fmt::Display for WordsError {
     }
 }
 
+/*
+// Not allowed in Rust 1.0 stable
 impl error::Error for WordsError {
     fn description(&self) -> &str {
         match *self {
@@ -38,6 +40,7 @@ impl error::Error for WordsError {
         }
     }
 }
+*/
 
 impl From<io::Error> for WordsError {
     fn from(err: io::Error) -> WordsError {

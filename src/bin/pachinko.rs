@@ -23,7 +23,10 @@ fn main() {
     let board_and_buckets = (0..h).map(|_| {
         input.read_line().unwrap()[1..w+1].to_string() })
         .collect::<Vec<_>>();
-    let (buckets, board) = board_and_buckets.split_last().unwrap();
+    // No split_last in Rust 1.0 stable
+    // let (buckets, board) = board_and_buckets.split_last().unwrap();
+    let (board, bucketss) = board_and_buckets.split_at(board_and_buckets.len()-1);
+    let ref buckets = bucketss[0];
     input.read_line().unwrap(); // Frame
     let bucket_scores = (0..b).map(|_| {
         (input.next().unwrap().unwrap().chars().next().unwrap(),
@@ -47,5 +50,10 @@ fn main() {
         };
         scores.push(row);
     }
-    println!("{}", queries.iter().map(|i| scores.last().unwrap()[i-1]).sum::<f64>());
+    // No sum() in Rust 1.0 stable
+    let mut res = 0.0f64;
+    for x in queries.iter().map(|i| scores.last().unwrap()[i-1]) {
+        res += x;
+    }
+    println!("{}", res);
 }

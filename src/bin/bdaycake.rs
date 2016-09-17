@@ -18,7 +18,11 @@ fn main() {
     let mut bestv = isize::max_value();
     let mut besti = 0;
     for i in 0..360 {
-        let v = counts[i..i+30].iter().sum();
+        // No sum() in Rust 1.0 stable
+        let mut v = 0;
+        for x in counts[i..i+30].iter() {
+            v = v + x;
+        }
         if v < bestv {
             besti = i;
             bestv = v;
